@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% load static %}
+
+{% block body %}
+<div class="hide-on-small-breadcrumbs">{% block current_page %}Home{% endblock %}</div>
+  <div class="hero-block">
+    <div class="hero-container w-container">
+      <div class="hero-divider">
+        <h3 class="hero-name">I&#x27;m Nate Moore</h3>
+        <h4 class="hero-small-text">A Software Engineer &amp; Full-Stack Developer</h4>
+        <h3 class="hero-location">Based in Perth, Western Australia</h3>
+        <h1 class="hero-message greeting">It&#x27;s nice to meet <span class="greeting-span">you</span>.<br></h1>
+        <div class="hero-button-container">
+          <a href="/about-me"><div class="cta-button indigo-btn">Meet Me</div></a>
+          <div class="cta-spacer"></div>
+          <a href="/portfolio"><div class="cta-button orange-btn">See My Work</div></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pitch-section">
+    <div class="pitch-container w-container">
+      <h1 class="content-heading">Full-Stack Web Development</h1>
+      <p class="pitch-text">Building great-looking websites that work exactly as intended is what I do. I mean, you&#x27;re using one right now.<br>‍<br>There&#x27;s no marketing fluff here, I don&#x27;t want to talk you into hiring me, I want my work to do that for me, and that&#x27;s why I have a portfolio. If you like what you see in my portfolio and how they work, then shoot me an email and we can talk about what I can do for you.<br><br>If you&#x27;re interested in how I do what I do, I have a blog where I detail every project I&#x27;ve done, as well as other general posts.<br>‍<br></p>
+    </div>
+  </div>
+  <div class="image-divider">
+    <div class="image-divider-container w-container">
+      <h1 class="big-pitch">Have a poorly built website?<br>Don&#x27;t have one at all?</h1>
+      <h1 class="big-pitch-prompt">See if you like <br>mine better</h1>
+      <a href="/portfolio"><div class="cta-button pitch-btn">portfolio</div></a>
+    </div>
+  </div>
+  <div class="features-section">
+    <div class="features-container w-container">
+      <h1 class="features-heading">Why choose a web developer? <br>Why not drag-and-drop website builders?</h1>
+      <p class="features-paragraph">Drag-and-drop website builders are a lot like a fast-food joint. You can walk into any McDonald&#x27;s, wait 5 minutes and walk out with your Big Mac and fries. It won&#x27;t be anything special though - and that&#x27;s assuming you&#x27;re even given the correct meal. We&#x27;ve all gone to a fast-food place and walked out with the wrong food. If you want a truly good meal you go out to a nice restaurant, you get seated and you wait patiently for a skilled chef to prepare exactly what you&#x27;ve ordered. It&#x27;s going to take longer, it&#x27;s going to cost more, but it&#x27;s going to be a damn good meal, and perhaps more importantly, it&#x27;s always going to be what you ordered, and not what the person behind you in the line ordered.<br>‍<br>These cheap website builders like Squarespace, Weebly, and Wix are all absolutely fine choices if the website you&#x27;re looking for is basic, something that relies on pre-made templates and churns out webpages in 5 minutes. They&#x27;re perfect If you just need a home page, a blog, an about section, and a way for people to contact you. But, they&#x27;re not typically considered a long-term business investment.<br><br>This is why, if you&#x27;re serious about your business then you&#x27;re also probably very serious about where you invest your money, and the long and short of it is, if the food looks and tastes good, people are going to keep coming back to buy it, and they&#x27;re going to be willing to pay more for it.<br><br>Sure, the Big Mac meal doesn&#x27;t taste bad, but would you pay <strong>$400</strong> for one with a chance of getting the completely wrong thing that doesn&#x27;t taste or look anything like what you wanted? Or would you rather spend that money to get proper service in a beautiful restaurant and a stunning, juicy wagyu steak served with beer-batter chips and a salad? I know what I&#x27;d pick.</p>
+      <h1 class="features-heading">What I Bring to the Table</h1>
+      <p class="features-paragraph second-paragraph">I believe that a successful website and business online presence rests on three main pillars - security, scalability, and strategy. These pillars are exactly why every website I build runs on the Django framework (see my <a href="/about-my-work" class="in-text-link">about my work</a> section for more information).</p>
+      <div class="feature-columns">
+        <div class="feature feature-one"><img src="{% static 'images/icons/security-icon.png' %}" alt="" class="feature-icon">
+          <h1 class="feature-title">Security</h1>
+          <p class="feature-text">Additionally, a secure website generates more leads. Websites <strong>not</strong> using HTTPS protocol rank lower in Google searches, and users will be informed that your website is &quot;not-secure&quot;.<br>‍<br>If you are doing any sort of transaction on the internet you need to have a secure site. If any sensitive information isn&#x27;t completely encrypted or hidden attackers could steal your customers information for which you may be liable. <br><br>My services will ensure that your site is compliant with the payment card industry data security standard and runs on the encrypted HTTPS protocol.</p>
+        </div>
+        <div class="feature feature-two"><img src="{% static 'images/icons/scalability-icon.png' %}" alt="" class="feature-icon">
+          <h1 class="feature-title">Scalability</h1>
+          <p class="feature-text">Your business is going to grow, and as it grows, so will your needs. This is where a dedicated web framework comes into the picture. Scalability ties in very strongly with server uptime, manageability, and performance.<br><br>Imagine running on a server that can only support 100 people active at any given time, but a recent surge in business has your server trying to handle 200 people at a time. If your website hasn&#x27;t been built to scale, this could cause significant downtime and result in thousands of dollars in lost revenue.<br></p>
+        </div>
+        <div class="feature feature-three"><img src="{% static 'images/icons/strategy-icon.png' %}" alt="" class="feature-icon">
+          <h1 class="feature-title">Strategy</h1>
+          <p class="feature-text">Every good business has a good business strategy. This should be no different for your online presence. <br><br>Making sure your website ranks well on search engines, improving customer click-through, retention and conversion rates, and an improved overall appearance of your business on the internet.<br><br>Research shows that system and service quality directly correlate with customer conversion and retention. <br><br>More conversions and higher retention equals more revenue straight into your business.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content-block call-to-action">
+    <div class="cta-container w-container">
+      <div class="cta-block">
+        <h1 class="cta-prompt">Not convinced?</h1>
+        <p class="paragraph">Don&#x27;t just let me tell you what I can do for you, let me show you.</p>
+        <div class="div-block">
+          <a href="/portfolio/mockups"><div class="cta-button purple-btn">Mockups</div></a>
+          <a href="/portfolio/projects"><div class="cta-button purple-btn">Projects</div></a>
+        </div>
+      </div>
+      <div class="cta-block">
+        <h1 class="cta-prompt">Seen enough?</h1>
+        <p class="paragraph-2">Then let&#x27;s sort something out.</p>
+        <div class="div-block">
+          <a href="/contact"><div class="cta-button green-btn">Contact Me</div></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    {% block javascript %}
+    <!--  Scripts -->
+    
+    {% endblock %}
+
+    <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
+    {% endblock %}
+

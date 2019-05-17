@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}</title>
+        <link href="{% static 'images/icons/favicon.ico' %}" rel="shortcut icon"/>
+        <link href="{% static 'css/src/errors.css' %}" rel="stylesheet" type="text/css"/>
+        <link href="{% static 'css/packages/webflow.css' %}" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+	<div class="error-block">
+	    <div class="error-container w-container">
+		<h1 class="error-heading">Page <span class="error-heading-span">Unavailable</span></h1>
+		<h3 class="error-subheading">This one is on me.</h3>
+		<p class="error-paragraph">There&x27;s usually something here, but it seems to have temporarily disappeared due to a server hiccup. Don&#x27;t worry though, it'll be back shortly.</p>
+	    </div>	    
+            <ul class="circles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </body>
+</html>

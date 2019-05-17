@@ -1,0 +1,170 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" style="content: ''">
+
+    <head>
+
+	<!-- Favicon  -->
+	<link href="{% static 'images/icons/favicon.ico' %}" rel="shortcut icon"/>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139838897-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-139838897-1');
+        </script>
+
+        <!-- Cookie Consent -->
+
+        <link href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css"  rel="stylesheet" type="text/css" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+ 
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        
+        <title>Nate Moore | {% block title %}{% endblock %}</title>
+
+        {% block head %}
+        {% endblock %}
+
+        <!-- Fonts -->
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,700" rel="stylesheet" type='text/css'/>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet" type='text/css'/>
+        <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css' />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type='text/css'/>
+
+        <!-- CSS Packages  -->
+
+        <link href="{% static 'css/packages/webflow.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+        <!-- CSS SRC -->
+
+        <link href="{% static 'css/src/style.css' %}" type="text/css" rel="stylesheet"/>
+        <link href="{% static 'css/src/colours.min.css' %}" type="text/css" rel="stylesheet"/>
+        <link href="{% static 'css/src/style.min.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+        <!-- JQuery -->
+ 
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+        <!-- JS -->
+
+        <script src="{% static 'js/packages/webflow.js' %}"></script>
+
+        <!-- Cookie Consent -->
+
+        <script>
+        window.addEventListener("load", function(){
+        window.cookieconsent.initialise({
+            "palette": {
+            "popup": {
+                "background": "#d13c65",
+                "text": "#f0eeeb"
+            },
+            "button": {
+                "background": "#f0eeeb",
+                "text": "#192125"
+            }
+            },
+            "position": "bottom-right",
+            "content": {
+            "message": "This website uses cookies to ensure an optimal user experience. By using this website you consent to the use of cookies."
+            }
+        })});
+        </script>
+    </head>
+
+    <body>
+        <div class="mobile-nav active"><img src="{% static 'images/icons/menu-burger.svg' %}" height="40" width="30" alt=""></div>
+            <div class="mobile-nav-expand hidden">
+                <a href="/" class="nav-link-container w-inline-block">
+                <p class="nav-link-text">Home</p>
+                </a>
+                <a href="/about-me" class="nav-link-container w-inline-block">
+                <p class="nav-link-text {% if request.path == 'about-me/' %}active{% endif %}">About</p>
+                </a>
+                <a href="/portfolio" class="nav-link-container w-inline-block">
+                <p class="nav-link-text {% if request.path == 'portfolio/' %}active{% endif %}">Portfolio</p>
+                </a>
+                <a href="/blog" class="nav-link-container w-inline-block">
+                <p class="nav-link-text {% if 'blog' in request.path %}active{% endif %}">Blog</p>
+                </a>
+                <a href="/contact" class="nav-link-container w-inline-block">
+                <p class="nav-link-text {% if request.path == 'contact/' %}active{% endif %}">Contact Me</p>
+                </a>
+            </div>
+            <div class="breadcrumb-bar">
+                <div class="breadcrumb-container w-container">
+                <p class="breadcrumb-text">{% block current_page %}{% endblock %}{% block subpage %}{% endblock %}</p>
+            </div>
+        </div>
+        <div class="nav-block">
+            <div class="nav-container w-container">
+                <a href="/" class="nav-link-container logo w-inline-block">
+                    <p class="nav-link-text logo"><span class="logo-span">Nate</span>Moore</p>
+                </a>
+                <a href="/">
+                    <div class="nav-link-container display-on-small {% if request.path == '/' %}active{% endif %}">Home</div>
+                </a>
+                <a href="/portfolio">
+                    <div class="nav-link-container {% if request.path == '/portfolio/' %}active{% endif %}">Portfolio</div>
+                </a>
+                <a href="/about-me">
+                    <div class="nav-link-container {% if request.path == '/about-me/' %}active{% endif %}">About Me</div>
+                </a>
+                <a href="/about-my-work">
+                    <div class="nav-link-container hide-on-small {% if request.path == '/about-my-work/' %}active{% endif %}">About My Work</div>
+                </a>
+                <a href="/blog">
+                    <div class="nav-link-container {% if 'blog' in request.path %}active{% endif %}">Blog</div>
+                </a>
+                <a href="/contact">
+                    <div class="nav-link-container display-on-small {% if request.path == '/contact/' %}active{% endif %}">Contact Me</div>
+                </a>
+                <p class="nav-separator w-inline-block"></p>
+                <a href="/contact" class="nav-link-container nav-button-container w-inline-block">
+                    <div class="cta-button contact-me">Contact Me</div>
+                </a>
+            </div>
+        </div>
+        {% block body %} 
+        {% endblock %}
+        
+        {% block javascript %}
+        {% endblock %}
+        <div class="footer">
+            <div class="footer-container w-container">
+                <div class="footer-column">
+                    <h1 class="footer-category">Contact</h1>
+                    <a href="/contact" class="footer-link-text">Contact Me</a>
+                    <a href="/faq" class="footer-link-text">FAQ</a>
+                </div>
+                <div class="footer-column">
+                <h1 class="footer-category">About</h1>
+                    <a href="/about-me" class="footer-link-text">About Me</a>
+                    <a href="/about-my-work" class="footer-link-text">About My Work</a>
+                    <a href="/portfolio" class="footer-link-text">Portfolio</a>
+                    <a href="/clients" class="footer-link-text">Clients</a>
+                </div>
+                <div class="footer-column">
+                    <h1 class="footer-category">Social</h1>
+                    <div class="social-btn-container">
+                        <div class="social-btn"><img src="{% static 'images/icons/facebook.png' %}" alt=""></div>
+                        <div class="social-btn"><img src="{% static 'images/icons/instagram.png' %}" alt=""></div>
+                        <div class="social-btn"><img src="{% static 'images/icons/twitter.png' %}" alt=""></div>
+                        <div class="social-btn"><img src="{% static 'images/icons/linkedin.png' %}" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

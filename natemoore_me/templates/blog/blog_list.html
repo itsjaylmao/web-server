@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load wagtailimages_tags %}
+
+{% block body %}
+<div class="hide-on-small-breadcrumbs">{% block current_page %}Blog{% endblock %}
+{% block subpage %} / List{% endblock %}</div>
+<div class="blog-list-container">
+    <div class="blog-list-hero" style="padding: background-image: -webkit-gradient(linear, left top, left bottom, from(hsla(199.99999999999997, 19.35%, 12.16%, 0.60)), to(hsla(199.99999999999997, 19.35%, 12.16%, 0.60))), url('https://natemoore.sgp1.cdn.digitaloceanspaces.com/static/images/photos/reactjs-crane.png'); background-image: linear-gradient(180deg, hsla(199.99999999999997, 19.35%, 12.16%, 0.60), hsla(199.99999999999997, 19.35%, 12.16%, 0.60)), url('https://natemoore.sgp1.cdn.digitaloceanspaces.com/static/images/photos/reactjs-crane.png');">
+        <div class="blog-list-hero-container w-container">
+        <div class="hero-text-container">
+            <h1 class="blog-list-hero-heading">My development blog</h1>
+            <p class="blog-list-information">My development blog serves as an archive of in-depth development processes and tutorials for each of the projects I have completed.</p>
+        </div>
+        </div>
+    </div>
+    <div class="blog-list-block">
+        <div class="category-container w-container">
+            <div class="category-block">
+            <a href="/blog/" class="post-info {% if request.path == '/blog/' %}active{% endif %}"><span class="category">All Topics</span></a>
+            {% for category in categories %}
+            <a href="/blog/{{category}}" class="post-info {% if request.path == '/blog/{{category}}/' %}active{% endif %}"><span class="category">{{category}}</span></a>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="post-list-container w-container">
+            {% for post in posts %}
+            {% image post.image original as post_image %}
+            {% if post.status == 1 %}
+            <div class="blog-post-listed-container">
+            <a href="/blog/post/{{post.slug}}"></a>
+            <div class="blog-post-listed-image" style="background-image: url('{{MEDIA_URL}}{{post_image.url}}');"></div>
+            <h4 class="blog-post-listed-category">{{post.category}} {{post.subcategory}}</h4>
+            <h3 class="heading">{{post.title}}</h3>
+            <p class="blog-post-listed-description hidden">{{post.blurb|truncatechars:321}}</p>
+            <div class="readtime">
+                <h4 class="blog-post-listed-readtime">{{post.read_time}} minute read</h4>
+                <h3 class="blog-post-listed-readmore">Continue Reading</h4>
+            </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <div class="blog-post-listed-container filler"></div>
+        </div>
+        {% if posts.has_other_pages %}
+        <div class="pagination-container">
+            {% if posts.has_previous %}
+            <a href="?page=1" class="pagination-link first-page clickable hidden">First</a>
+            <a href="?page={{posts.previous_page_number}}" class="pagination-link previous-page hidden">Previous</a>
+            {% else %}
+            <a href="" class="pagination-link first-page hidden" style="cursor:default;">First</a>
+            <a href="" class="pagination-link previous-page hidden" style="cursor:default;">Previous</a>
+            {% endif %}
+            <div class="page-number-container">
+            {% for i in posts.paginator.page_range %}
+                {% if posts.number == i %}
+                <a href="" class="pagination-link page-number current" style="cursor:default;">{{i}}</a>
+                {% else %}
+                <a href="?page={{i}}" class="pagination-link page-number clickable">{{i}}</a>
+                {% endif %}
+            {% endfor %}
+            </div>
+            {% if posts.has_next %}
+            <a href="?page={{posts.next_page_number}}" class="pagination-link next-page clickable hidden">Next</a>
+            <a href="?page={{i}}" class="pagination-link last-page clickable hidden">Last</a>
+            {% else %}
+            <a href="" class="pagination-link next-page hidden" style="cursor:default;">Next</a>
+            <a href="" class="pagination-link last-page hidden" style="cursor:default;">Last</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+$(".blog-post-listed-container").click(function() {
+    window.location = $(this).find("a").attr("href");
+    return false;
+});
+</script>
+{% endblock %}

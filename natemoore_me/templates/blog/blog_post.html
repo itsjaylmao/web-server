@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}{{post.title}}{% endblock %}
+{% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailembeds_tags %}
+{% load wagtailcore_tags %}
+
+{% block body %}
+<div class="hide-on-small-breadcrumbs">{% block current_page %} {{post.category}} {% endblock %}{% block subpage %} / {{post.subcategory}} {% endblock %}
+{% image post.image original as post_image %}</div>
+<div class="blog-post-hero" style="background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.6)), to(rgba(0, 0, 0, 0.6))), url('{{MEDIA_URL}}{{post_image.url}}'); background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{MEDIA_URL}}{{post_image.url}}');">
+    <div class="blog-post-hero-container w-container">
+        <h1 class="blog-post-hero-heading">{{post.title}}</h1>
+    </div>
+</div>
+<div class="blog-post-content-block">
+    <div class="blog-post-floating-section">
+        <div class="blog-post-floating-container w-container">
+            <div class="blog-post-floating-columns w-row">
+                <div class="blog-post-floating-column-left w-col w-col-6">
+                    <h4 class="blog-post-floating-category">{{post.category}}</h4>
+                    <h4 class="blog-post-floating-subcategory">{{post.subcategory}}</h4>
+                </div>
+                <div class="blog-post-floating-column-right w-col w-col-6">
+                    <h4 class="blog-post-floating-read-time">Read Time: {{post.read_time}} minutes</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="blog-post-content-section">
+        <div class="blog-post-content-container w-container">
+            <div class="blog-content w-richtext">
+                <p>{{post.content|richtext}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascript %}
+{% endblock %}  
