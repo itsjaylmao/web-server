@@ -386,8 +386,8 @@ blockquote {
 }
 
 .button.go-back {
-  border-color: #fc6f00;
-  color: #fc6f00;
+  border-color: #8c0fff;
+  background-color: #8c0fff;
 }
 
 .button.go-back:hover {
@@ -1620,6 +1620,10 @@ blockquote {
     margin-top: 0px;
     margin-bottom: 0px;
   }
+  .button.go-back {
+    padding: 16px 30px;
+    font-size: 2em;
+  }
   .feature-section {
     padding-top: 0px;
     padding-bottom: 0px;
@@ -1760,14 +1764,15 @@ blockquote {
     font-size: 14px;
   }
   .utility-page-container {
-    padding-top: 104px;
+    height: auto;
+    padding-top: 0px;
   }
   .utility-page-heading {
     margin-bottom: 0px;
     font-size: 5em;
   }
   .utility-page-text {
-    font-size: 1.3em;
+    font-size: 2em;
   }
   .utility-page-content-block {
     width: 242px;
