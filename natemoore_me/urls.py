@@ -12,6 +12,7 @@ from wagtail.core import urls as wagtail_urls
 urlpatterns = [
     path('portfolio/', include('portfolio.urls')),
     path('blog/', include('blog.urls')),
+    path('contact/', include('contact.urls')),
     re_path(r'^administration/cms/', include(wagtailadmin_urls)),
     re_path(r'^documents/', include(wagtaildocs_urls)),
     re_path(r'^pages/', include(wagtail_urls)),
