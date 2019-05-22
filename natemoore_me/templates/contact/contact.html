@@ -15,20 +15,44 @@
         <form action method="post" id="email-form" name="email-form" data-name="Email Form" data-w-id="64b41296-4951-47b6-9936-2532b2af6a6a" style="opacity:0;-webkit-transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="contact-form">
           {% csrf_token %}
           <div class="contact-field-block">
-	    {{form.from_name}}
+	        {{form.from_name}}
           </div>
           <div class="contact-field-block">
-	    {{form.subject}}
+	        {{form.subject}}
           </div>
           <div class="contact-field-block">
-	    {{form.from_email}}
+	        {{form.from_email}}
           </div>
           <div class="contact-field-block">
-	    {{form.message}}
+	        {{form.message}}
           </div>
           <input type="submit" value="Submit" data-wait="Please wait..." data-w-id="64b41296-4951-47b6-9936-2532b2af6a71" style="opacity:0" class="button form-submit dark-to-orange w-button"></form>
       </div>
     </div>
   </div>
+
+  {% block javascript %}
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $("#email-form").submit(function(e){
+        e.preventDefault();
+        var serialisedData = $(this).serialize();
+        $.ajax({
+          type: 'POST',
+          url: "{% url 'contact' %}",
+          success : function(response){
+            $("#email-form")[0].reset();
+          },
+          error : function(response){
+            console.log(response)
+          }
+        });
+      });
+    });
+
+    </script>
+
+  {% endblock %}
 
   {% endblock %}
