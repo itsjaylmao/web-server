@@ -1,32 +1,27 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Page Not Found</title>
-        <link href="{% static 'images/icons/favicon.ico' %}" rel="shortcut icon"/>
-        <link href="{% static 'css/src/errors.css' %}" rel="stylesheet" type="text/css"/>
-        <link href="{% static 'css/packages/webflow.css' %}" rel="stylesheet" type="text/css"/>
-    </head>
-    <body>
-        <div class="error-block">
-            <div class="error-container w-container" style="position:relative;z-index:999;">
-		<h1 class="error-heading">Oops!</h1>
-		<h3 class="error-subheading">This is embarassing.</h3>
-		<p class="error-paragraph">It seems that this page, however you got here, doesn't exist.</p>
-		<a href="/" class="error-return-btn">Go Home</a>
-	    </div>
-	    <ul class="circles">
-		<li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-	</div>
-    </body>
+<html data-wf-page="5ce141ec0b5f0b51a32339de" data-wf-site="5cde3bb593d00263212ab252">
+<head>
+  <meta charset="utf-8">
+  <title>Not Found</title>
+  <link href="{% static 'css/packages/normalize.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'css/packages/webflow.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'css/src/style.css' %}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet" type='text/css'/>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+  <div class="utility-page-wrap">
+    <div class="utility-page-container w-container">
+      <img src="{% static 'images/photos/undraw_abduction.svg' %}" width="500" alt="" class="utility-page-image">
+      <div class="utility-page-content-block">
+        <h1 class="utility-page-heading">Oh Dear...</h1>
+        <p class="utility-page-text">It appears this page has been abducted.</p>
+      </div><a href="/" class="button go-back w-button">Take Me Back</a></div>
+  </div>
+  <script src="{% static 'js/packages/webflow.js' %}" type="text/javascript"></script>
+  <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
+</body>
 </html>
