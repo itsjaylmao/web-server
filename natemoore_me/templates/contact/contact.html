@@ -3,6 +3,20 @@
 {% block title %}Get In Touch{% endblock %}
 {% load static %}
 {% block body %}
+  <div id="success-modal" data-w-id="361449b1-e37d-1ef6-538d-bea238fd0ec7" style="position:fixed;display:none" class="submission-result">
+    <div class="submission-result-box">
+      <h1 class="submission-result-heading">Thank You!</h1>
+      <p class="submission-result-text">Your form has successfully been submitted. I&#x27;ll get back in touch with you as soon as I can.</p>
+      <a data-w-id="6d726932-3edd-59e8-7467-24c4a3bf3061" class="button purple-to-orange w-button">Go Back</a></div>
+    </div>
+  </div>
+  <div data-w-id="361449b1-e37d-1ef6-538d-bea238fd0ec7" style="display:none" class="submission-result">
+    <div class="submission-result-box">
+      <h1 class="submission-result-heading">Oh dear...</h1>
+      <p class="submission-result-text">Something has gone wrong and your form hasn't been submitted.</p>
+      <a data-w-id="6d726932-3edd-59e8-7467-24c4a3bf3061" href="" class="button purple-to-orange w-button">Go Back</a></div>
+    </div>
+  </div>
   <div data-w-id="e5ce5451-34b1-5331-a895-28718c4cbb6f" class="preloader-background">
     <img src="{% static 'images/gifs/preloader.gif' %}" data-w-id="e5ce5451-34b1-5331-a895-28718c4cbb70" alt="" class="image">
     <h4>Loading...</h4>
@@ -12,7 +26,7 @@
       <h1 data-w-id="d1c8eab1-5460-d0a1-15f9-eef8f77f8e59" style="opacity:0" class="contact-heading">Let&#x27;s Get in Touch</h1>
       <p data-w-id="b91dfd3d-27ef-03af-9f67-a06fe5749c1d" style="opacity:0" class="contact-content">I&#x27;m more than happy to answer any questions you may have. Please fill out the short form below and I&#x27;ll be in touch ASAP.</p>
       <div class="contact-form-block">
-        <form action method="post" id="email-form" name="email-form" data-name="Email Form" data-w-id="64b41296-4951-47b6-9936-2532b2af6a6a" style="opacity:0;-webkit-transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="contact-form">
+        <form action method="post" id="email-form" name="email-form" data-url="{{ request.build_absolute_uri|safe }}" data-name="Email Form" data-w-id="64b41296-4951-47b6-9936-2532b2af6a6a" style="opacity:0;-webkit-transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1.3, 1.3, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="contact-form">
           {% csrf_token %}
           <div class="contact-field-block">
 	        {{form.from_name}}
@@ -26,33 +40,102 @@
           <div class="contact-field-block">
 	        {{form.message}}
           </div>
-          <input type="submit" value="Submit" data-wait="Please wait..." data-w-id="64b41296-4951-47b6-9936-2532b2af6a71" style="opacity:0" class="button form-submit dark-to-orange w-button"></form>
+          <input id="contact-submit" type="submit" value="Submit" data-wait="Please wait..." data-w-id="64b41296-4951-47b6-9936-2532b2af6a71" style="opacity:0" class="button form-submit dark-to-orange w-button"></form>
       </div>
     </div>
   </div>
+  <script>
 
-  {% block javascript %}
 
-    <script type="text/javascript">
-    $(document).ready(function() {
-      $("#email-form").submit(function(e){
-        e.preventDefault();
-        var serialisedData = $(this).serialize();
-        $.ajax({
-          type: 'POST',
-          url: "{% url 'contact' %}",
-          success : function(response){
-            $("#email-form")[0].reset();
-          },
-          error : function(response){
-            console.log(response)
+  $(document).ready(function(){
+
+    $('#success-modal').click(function(){$('#success-modal').fadeOut()});
+
+    function getCookie(name){
+      var cookieValue = null;
+      if (document.cookie && document.cookie !== ''){
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++){
+          var cookie = jQuery.trim(cookies[i]);
+          if (cookie.substring(0, name.length + 1) === (name + '=')){
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
           }
-        });
-      });
+        }
+      }
+      return cookieValue;
+    }
+
+    var csrftoken = getCookie('csrftoken');
+
+    function csrfSafeMethod(method){
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings){
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain){
+          xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+      }
     });
 
-    </script>
+    function submitClicked() {
+      $('#contact-submit').onclick(function(){
+	$(this).val('Submitting...');
+	});
+    };
+
+    var $contactForm = $('#email-form')
+
+    $contactForm.submit(function(e){
+      submitClicked
+      e.preventDefault()
+      e.stopImmediatePropagation();
+      var $formData = $(this).serialize()
+      var $thisURL = $contactForm.attr('data-url') || window.location.href
+      $.ajax({
+        method: 'POST',
+        url: $thisURL,
+        data: $formData,
+	success: handleFormSuccess && toggleSuccessModal,
+	error: handleFormError && toggleErrorModal,
+	beforeSend: function(){
+	    $('#contact-submit').val('Processing...');
+            $('#contact-submit').prop('disabled', true);
+	},
+	complete: function(){
+	    $('#contact-submit').val('Submit');
+	    $('#contact-submit').prop('disabled', false);
+            $contactForm[0].reset();
+	},
+      })
+    })
+    
+    function toggleSuccessModal() {
+        $('#success-modal').fadeToggle();
+    }
+
+    function toggleErrorModal() {
+	$('#error-modal').fadeToggle();
+    }
+
+    function handleFormSuccess(data, textStatus, jqXHR){
+      console.log(data)
+      console.log(textStatus)
+      console.log(jqXHR)
+      $contactForm[0].reset();
+    }
+
+    function handleFormError(jqXHR, textStatus, errorThrown){
+      console.log(jqXHR)
+      console.log(textStatus)
+      console.log(errorThrown)
+    }
+
+  })
+
+  </script>
 
   {% endblock %}
 
-  {% endblock %}

@@ -2,9 +2,9 @@ from django import forms
 
 CHOICES = (
     ('Other', "What's this about?"),
-    ('Branding', 'Branding'),
-    ('Website', 'Website'),
-    ('E-commerce', 'E-commerce'),
+    ('Online Branding', 'Online Branding'),
+    ('Website Development', 'Website Development'),
+    ('E-commerce Websites', 'E-commerce Websites'),
     ('Getting a Quote', 'Getting a Quote'),
     ('Other', 'Other')
 )
@@ -38,6 +38,7 @@ class ContactForm(forms.Form):
         widget=forms.Textarea(attrs={
             'class': "contact-form-field textarea w-input",
             'maxlength': "5000",
+            'placeholder': "How can I help you?",
             'style': "opacity:0",
             'data-w-id': "27515d10-5add-9c89-a789-ca6fb26596d6",
         })
